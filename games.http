@@ -1,0 +1,30 @@
+GET http://localhost:5056/games
+
+###
+GET http://localhost:5056/games/8
+
+###
+POST http://localhost:5056/games
+Content-Type: application/json
+
+{
+
+  "name": "The Legend of Zelda: Breath of the Wild",
+  "genre": "Action-adventure",
+  "price": 59.99,
+  "releaseDate": "2026-03-03"
+}
+
+###
+PUT http://localhost:5056/games/8
+Content-Type: application/json
+
+{
+  "name": "The Legend of Zelda: Breath of the Wild",
+  "genre": "Action-adventure",
+  "price": 59.99,
+  "releaseDate": "2026-03-03"
+}
+
+###
+DELETE http://localhost:5056/games/1
