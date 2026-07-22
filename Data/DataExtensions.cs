@@ -16,6 +16,14 @@ public static class DataExtensions
     public static void AddGameStoreDb(this WebApplicationBuilder builder)
     {
         var connString = builder.Configuration.GetConnectionString("GameStore");
+
+    // DbContext has a Scoped service lifetime because:
+    // 1. It ensures that a new instance of DbContext is created for per request
+    // 2. DB connections are a limited and expensive resource
+    // 3. DbContext is not thread-safe. Scoped avoids to concurrency issues
+    // 4. Makes it easier to manage transactions and ensure data consistancy
+    // 5. Reusing a DBContext instance can lead to increased memory usage
+
         builder.Services.AddSqlite<GameStoreContext>(
             connString,
             optionsAction: options => options.UseSeeding((context, _) =>
